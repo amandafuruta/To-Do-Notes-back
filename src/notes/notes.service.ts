@@ -19,7 +19,7 @@ export class NotesService {
   }
 
   findAll() {
-    return `This action returns all notes`;
+    return this.prisma.note.findMany();
   }
 
   findOne(id: number) {
