@@ -18,12 +18,23 @@ model Category {
   @@map("category")
 }
 
+model Status {
+  id    Int    @id @default(autoincrement())
+  title String @db.VarChar(20)
+  notes Note[]
+
+  @@map("status")
+}
+
 model Note {
   id         Int      @id @default(autoincrement())
+  order      Int      @default(autoincrement()) @db.Integer
   title      String   @db.VarChar(200)
   content    String   @db.VarChar(500)
   categoryId Int      @map("category_id")
+  statusId   Int      @map("status_id")
   category   Category @relation(fields: [categoryId], references: [id])
+  status     Status   @relation(fields: [statusId], references: [id])
 
   @@map("note")
 }

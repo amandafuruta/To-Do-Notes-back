@@ -19,7 +19,11 @@ export class NotesService {
   }
 
   findAll() {
-    return this.prisma.note.findMany();
+    return this.prisma.note.findMany({
+      orderBy: {
+        order: 'asc'
+      }
+    });
   }
 
   findOne(id: number) {
