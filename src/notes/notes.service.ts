@@ -15,7 +15,6 @@ export class NotesService {
       statusCode: 200,
       data: createData,
     };
-
   }
 
   findAll() {
@@ -30,11 +29,22 @@ export class NotesService {
     return `This action returns a #${id} note`;
   }
 
-  update(id: number) {
-    return `This action updates a #${id} note`;
+  update(id: number, statusId) {
+    return this.prisma.note.update({
+      where: {
+        id
+      },
+      data: {
+        statusId: parseInt(statusId.statusId)
+      }
+    })
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} note`;
+  async remove(id: number) {
+    return this.prisma.note.delete({
+      where: {
+        id
+      }
+    })
   }
 }

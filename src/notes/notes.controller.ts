@@ -31,12 +31,12 @@ export class NotesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string) {
-    return this.notesService.update(+id);
+  async update(@Param('id') id: string, @Body() createNoteDto: NotesDTO) {
+    return this.notesService.update(+id, createNoteDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.notesService.remove(+id);
+  async delete(@Param('id') id: string) {
+    return this.notesService.remove(parseInt(id));
   }
 }
