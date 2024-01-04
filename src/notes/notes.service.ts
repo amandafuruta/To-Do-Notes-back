@@ -29,13 +29,24 @@ export class NotesService {
     return `This action returns a #${id} note`;
   }
 
-  update(id: number, statusId) {
+  update(id: number, body) {
     return this.prisma.note.update({
       where: {
         id
       },
       data: {
-        statusId: parseInt(statusId.statusId)
+        statusId: parseInt(body.statusId)
+      }
+    })
+  }
+
+  reorder(id: number, body) {
+    return this.prisma.note.update({
+      where: {
+        id
+      },
+      data: {
+        order: parseInt(body.order)
       }
     })
   }

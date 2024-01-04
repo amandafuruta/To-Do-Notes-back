@@ -5,6 +5,7 @@ import {
   Post,
   Body,
   Patch,
+  Put,
   Param,
   Delete,
 } from '@nestjs/common';
@@ -33,6 +34,12 @@ export class NotesController {
   @Patch(':id')
   async update(@Param('id') id: string, @Body() createNoteDto: NotesDTO) {
     return this.notesService.update(+id, createNoteDto);
+  }
+
+  @Put('reorder/:id')
+  async reorder(@Param('id') id: string, @Body() createNoteDto: NotesDTO) {
+    // console.log(`teste ${id} ${createNoteDto}`)
+    return this.notesService.reorder(+id, createNoteDto);
   }
 
   @Delete(':id')
